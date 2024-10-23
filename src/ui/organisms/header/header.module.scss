@@ -1,0 +1,31 @@
+@import "../../../assets/styles/variables.scss";
+
+.container {
+    width: 100%;
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .button {
+        width: 15%;
+        height: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        border-radius: 5rem;
+        color: $text-white;
+        font-family: var(--font-principal);
+        border: none;
+        color: $text-white;
+        cursor: pointer;
+    }
+}
+
+.vacancies {
+    background-color: $button-vacancies;
+}
+
+.companies { 
+    background-color: $button-companies;
+}

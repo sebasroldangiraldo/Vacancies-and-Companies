@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import "../assets/styles/globals.scss";
 
 export const metadata: Metadata = {
     title: "Vacancies and Companies",

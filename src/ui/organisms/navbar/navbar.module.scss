@@ -1,0 +1,60 @@
+@import "../../../assets/styles/variables.scss";
+
+.nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+
+    .navLinks {
+        width: 25%;
+        height: 2.5rem;
+        display: flex;
+        text-align: center;
+        background-color: $background-gray-navigation-buttons;
+        border-radius: 5rem;
+
+        .navLink {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            text-decoration: none;
+            color: $text-light-gray;
+            border-radius: 5rem;
+        }
+    }
+
+    .search {
+        width: 20%;
+        height: 2.5rem;
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        color: $text-light-gray;
+        border: 0.15rem solid $border-gray;
+        border-radius: 5rem;
+
+        .input {
+            border: none;
+            font-family: var(--font-principal);
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    .vacancies {
+        background-color: $button-vacancies;
+        color: $text-white !important;
+    }
+
+    .companies {
+        background-color: $button-companies;
+        color: $text-white !important;
+    }
+}

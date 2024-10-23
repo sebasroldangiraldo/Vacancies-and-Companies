@@ -1,0 +1,14 @@
+@import "../../assets/styles/variables.scss";
+
+.layoutContainer{
+    width: 80%;
+    margin: 3vh auto;
+    padding: 2rem;
+    background-color: $background-white;
+    height: 93vh;
+    border-radius: 1rem;
+
+    .title {
+        text-align: center;
+    }
+}

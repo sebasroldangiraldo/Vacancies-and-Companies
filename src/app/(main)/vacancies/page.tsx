@@ -1,7 +1,9 @@
-export default function Vacancies() {
+import Header from "@/ui/organisms/header/header";
+
+export default function VacanciesPage() {
     return (
         <div>
-            <h1>Vacancies</h1>
+            <Header title="Vacantes" name="Agregar Vacante" icon="add" color="vacancies"></Header>
         </div>
     );
 }
