@@ -24,6 +24,10 @@
             text-decoration: none;
             color: $text-light-gray;
             border-radius: 5rem;
+
+            &:active {
+                transform: scale(0.95);
+            }
         }
     }
 

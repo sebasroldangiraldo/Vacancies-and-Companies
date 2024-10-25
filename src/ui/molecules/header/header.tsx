@@ -8,7 +8,7 @@ interface HeaderProps {
     name: string;
     icon: keyof typeof icons;
     color: string;
-}
+};
 
 const Header: React.FC<HeaderProps> = ({ title, name, icon, color }) => {
     
@@ -22,10 +22,4 @@ const Header: React.FC<HeaderProps> = ({ title, name, icon, color }) => {
 
 export default Header;
 
-{/* <div className={styles.container}>
-<Title level={2}>{title}</Title>
-<div className={`${styles.buttonContainer} ${styles[colorButton]}`} > 
-    {icons[iconName]}
-    <Button type="button" className={styles.button}>{buttonTitle}</Button>
-</div>
-</div> */}
+// el compoente debe recibir como propiedad una función que se le asignará al botón para poder abrir el modal.

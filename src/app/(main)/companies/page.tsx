@@ -1,9 +1,9 @@
-import Header from "@/ui/organisms/header/header";
+import Companies from "@/ui/templates/companies/companies";
 
-export default function Companies() {
+export default function CompaniesPage() {
     return (
         <div>
-            <Header title="Compañías" name="Agregar Compañía" icon="add" color="companies"></Header>
+            <Companies />
         </div>
     );
 }
