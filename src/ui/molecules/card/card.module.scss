@@ -1,7 +1,62 @@
 @import "../../../assets/styles/variables.scss";
 
-.card{
-    width: 35%;
-    height: 12rem;
-    border: 1px solid black;
+.card {
+    width: 31.5%;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.4rem 0.5rem $border-gray;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .data {
+        color: $text-light-gray;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        margin-right: 0.5rem;
+        
+
+        .button {
+            background-color: $background-white;
+            border: 0.1rem solid $border-gray;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.3rem;
+            cursor: pointer;
+
+            &:active {
+                transform: scale(0.95);
+            }
+        }
+
+        .delete {
+            color: $text-button-delete;
+
+            &:hover {
+                color: $text-button-delete-hover;
+            }
+        }
+
+        .companies {
+            color: $button-companies;
+
+            &:hover {
+                color: $button-companies-hover;
+            }
+        }
+
+        .vacancies {
+            color: $button-vacancies;
+
+            &:hover {
+                color: $button-vacancies-hover;
+            }
+        }
+    }
 }

@@ -2,7 +2,7 @@
 
 .container {
     width: 100%;
-    margin-top: 1.5rem;
+   
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,8 +28,16 @@
 
 .vacancies {
     background-color: $button-vacancies;
+
+    &:hover {
+        background-color: $button-vacancies-hover;
+    }
 }
 
 .companies { 
     background-color: $button-companies;
+
+    &:hover {
+        background-color: $button-companies-hover;
+    }
 }

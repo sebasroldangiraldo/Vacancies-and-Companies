@@ -7,7 +7,7 @@ interface HeaderProps {
     title: string;
     name: string;
     icon: keyof typeof icons;
-    color: string;
+    color: "vacancies" | "companies";
 };
 
 const Header: React.FC<HeaderProps> = ({ title, name, icon, color }) => {
