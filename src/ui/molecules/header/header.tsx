@@ -8,14 +8,15 @@ interface HeaderProps {
     name: string;
     icon: keyof typeof icons;
     color: "vacancies" | "companies";
+    onClick: () => void;
 };
 
-const Header: React.FC<HeaderProps> = ({ title, name, icon, color }) => {
-    
+const Header: React.FC<HeaderProps> = ({ title, name, icon, color, onClick }) => {
+
     return (
         <div className={styles.container}>
             <Title level={2}>{title}</Title>
-            <Button type="button" className={`${styles.button} ${styles[color]}`}>{icons[icon]}{name}</Button>
+            <Button type="button" className={`${styles.button} ${styles[color]}`} onClick={onClick}>{icons[icon]}{name}</Button>
         </div>
     );
 };

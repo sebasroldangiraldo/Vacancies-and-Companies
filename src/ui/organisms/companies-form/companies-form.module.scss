@@ -1,0 +1,32 @@
+@import "../../../assets/styles/variables.scss";
+
+.button {
+    width: 100%;
+    height: 2.75rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-family: var(--font-principal);
+    font-weight: 600;
+    color: $text-white;
+    cursor: pointer;
+
+    &:active {
+        transform: scale(0.95);
+    }
+}
+
+.vacancies {
+    background-color: $button-vacancies;
+
+    &:hover {
+        background-color: $button-vacancies-hover;
+    }
+}
+
+.companies { 
+    background-color: $button-companies;
+
+    &:hover {
+        background-color: $button-companies-hover;
+    }
+}

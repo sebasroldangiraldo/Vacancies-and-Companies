@@ -4,6 +4,7 @@ import { IoSearch } from "react-icons/io5";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { LuPencil } from "react-icons/lu";
 import { PiTrashBold } from "react-icons/pi";
+import { IoClose } from "react-icons/io5";
 
 export const icons = {
     search : <IoSearch size={20} />,
@@ -11,5 +12,6 @@ export const icons = {
     building : <LuBuilding2 size={20} />,
     add : <IoAddCircleOutline size={20} />,
     edit : <LuPencil size={20} />,
-    delete : <PiTrashBold size={20} />
+    delete : <PiTrashBold size={20} />,
+    close : <IoClose size={20} />
 };

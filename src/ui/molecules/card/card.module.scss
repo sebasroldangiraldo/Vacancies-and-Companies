@@ -11,6 +11,7 @@
 
     .data {
         color: $text-light-gray;
+        font-weight: 300;
     }
 
     .actions {
@@ -18,7 +19,6 @@
         justify-content: flex-end;
         gap: 0.5rem;
         margin-right: 0.5rem;
-        
 
         .button {
             background-color: $background-white;
@@ -29,7 +29,7 @@
             justify-content: center;
             border-radius: 0.3rem;
             cursor: pointer;
-
+            
             &:active {
                 transform: scale(0.95);
             }
