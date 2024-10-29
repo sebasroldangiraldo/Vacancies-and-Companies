@@ -10,12 +10,13 @@
         color: $text-medium-gray;
     }
 
-    .input {
+    .select {
         height: 2.75rem;
         border-radius: 0.4rem;
         border: 0.1rem solid $border-gray;
         padding: 0.25rem;
         font-family: var(--font-principal);
+        cursor: pointer;
     }
 }
 

@@ -22,5 +22,3 @@ const Header: React.FC<HeaderProps> = ({ title, name, icon, color, onClick }) =>
 };
 
 export default Header;
-
-// el compoente debe recibir como propiedad una función que se le asignará al botón para poder abrir el modal.

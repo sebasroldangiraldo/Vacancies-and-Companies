@@ -3,7 +3,7 @@ interface Option {
     value: string | number;
 };
 
-interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
     options: Option[];
 };
 

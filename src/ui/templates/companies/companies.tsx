@@ -1,12 +1,12 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import Text from "@/ui/atoms/text";
 import Card from "@/ui/molecules/card/card";
 import Header from "@/ui/molecules/header/header";
 import Modal from "@/ui/organisms/modal/modal";
-import styles from "./companies.module.scss";
 import CompaniesForm from "@/ui/organisms/companies-form/companies-form";
+import styles from "./companies.module.scss";
 
 const Companies : React.FC = () => {
 
@@ -24,7 +24,7 @@ const Companies : React.FC = () => {
         console.log("eliminar");
     };
 
-    const handleSubmit = (event: FormEvent) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         console.log("enviar formulario");
     };

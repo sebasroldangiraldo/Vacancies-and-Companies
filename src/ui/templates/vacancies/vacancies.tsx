@@ -5,6 +5,7 @@ import Text from "@/ui/atoms/text";
 import Card from "@/ui/molecules/card/card";
 import Header from "@/ui/molecules/header/header";
 import Modal from "@/ui/organisms/modal/modal";
+import VacanciesForm from "@/ui/organisms/vacancies-form/vacancies-form";
 import styles from "./vacancies.module.scss";
 
 const Vacancies: React.FC = () => {
@@ -23,7 +24,8 @@ const Vacancies: React.FC = () => {
         console.log("eliminar");
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         console.log("enviar formulario");
     };
     
@@ -31,7 +33,7 @@ const Vacancies: React.FC = () => {
         <div>
             <Header title="Vacantes" name="Agregar Vacante" icon="add" color="vacancies" onClick={toggleModal}></Header>
             <Modal title="Agregar Vacante" open={modal} onClose={toggleModal}>
-                <p>MODAL</p>
+                <VacanciesForm onSubmit={handleSubmit} color="vacancies"></VacanciesForm>
             </Modal>
             <div className={styles.container}>
                 <Card title="Desarrollador Front-end" onEdit={handleEdit} onDelete={handleDelete} color="vacancies">
