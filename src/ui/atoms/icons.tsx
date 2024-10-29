@@ -5,6 +5,7 @@ import { IoAddCircleOutline } from "react-icons/io5";
 import { LuPencil } from "react-icons/lu";
 import { PiTrashBold } from "react-icons/pi";
 import { IoClose } from "react-icons/io5";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export const icons = {
     search : <IoSearch size={20} />,
@@ -13,5 +14,7 @@ export const icons = {
     add : <IoAddCircleOutline size={20} />,
     edit : <LuPencil size={20} />,
     delete : <PiTrashBold size={20} />,
-    close : <IoClose size={20} />
+    close : <IoClose size={20} />,
+    back: <IoIosArrowBack size={20}/>,
+    foward: <IoIosArrowForward size={20}/>
 };

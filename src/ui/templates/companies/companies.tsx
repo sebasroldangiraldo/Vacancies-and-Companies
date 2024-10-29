@@ -7,6 +7,7 @@ import Header from "@/ui/molecules/header/header";
 import Modal from "@/ui/organisms/modal/modal";
 import CompaniesForm from "@/ui/organisms/companies-form/companies-form";
 import styles from "./companies.module.scss";
+import Pagination from "@/ui/organisms/pagination/pagination";
 
 const Companies : React.FC = () => {
 
@@ -53,6 +54,7 @@ const Companies : React.FC = () => {
                     <Text>Contacto: 555-0101</Text>
                 </Card>
             </div>
+            <Pagination></Pagination>
         </div>
     );
 };

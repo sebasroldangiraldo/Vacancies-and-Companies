@@ -1,0 +1,29 @@
+@import "../../../assets/styles/variables.scss";
+
+.container {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: $text-light-gray;
+
+    .button {
+        background-color: $background-gray-navigation-buttons;
+        color: $text-light-gray;
+        border: none;
+        display: flex;
+        padding: 0.5rem;
+        border-radius: 1.5rem;
+        cursor: pointer;
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        &:hover {
+            background-color: $text-light-gray;
+            color: $background-gray-navigation-buttons;
+        }
+    }
+}

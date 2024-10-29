@@ -20,7 +20,7 @@ const inputLabel = [
 const textareaLabel = [
     {
         labelProps: { htmlFor: "description", children: "Descripción:" },
-        textareaProps: { id: "title", name: "title" }
+        textareaProps: { id: "description", name: "description" }
     }
 ];
 

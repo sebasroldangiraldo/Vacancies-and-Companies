@@ -6,6 +6,7 @@ import Card from "@/ui/molecules/card/card";
 import Header from "@/ui/molecules/header/header";
 import Modal from "@/ui/organisms/modal/modal";
 import VacanciesForm from "@/ui/organisms/vacancies-form/vacancies-form";
+import Pagination from "@/ui/organisms/pagination/pagination";
 import styles from "./vacancies.module.scss";
 
 const Vacancies: React.FC = () => {
@@ -57,6 +58,7 @@ const Vacancies: React.FC = () => {
                     <Text>Compañía: TechCorp</Text>
                 </Card>
             </div>
+            <Pagination></Pagination>
         </div>
 
     );
