@@ -24,17 +24,12 @@ const Vacancies: React.FC = () => {
     const handleDelete = () => {
         console.log("eliminar");
     };
-
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        console.log("enviar formulario");
-    };
     
     return (
         <div>
             <Header title="Vacantes" name="Agregar Vacante" icon="add" color="vacancies" onClick={toggleModal}></Header>
             <Modal title="Agregar Vacante" open={modal} onClose={toggleModal}>
-                <VacanciesForm onSubmit={handleSubmit} color="vacancies"></VacanciesForm>
+                <VacanciesForm color="vacancies"></VacanciesForm>
             </Modal>
             <div className={styles.container}>
                 <Card title="Desarrollador Front-end" onEdit={handleEdit} onDelete={handleDelete} color="vacancies">
@@ -58,7 +53,7 @@ const Vacancies: React.FC = () => {
                     <Text>Compañía: TechCorp</Text>
                 </Card>
             </div>
-            <Pagination></Pagination>
+            {/* <Pagination></Pagination> */}
         </div>
 
     );

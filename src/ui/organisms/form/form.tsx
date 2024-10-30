@@ -1,4 +1,3 @@
-import Button from "@/ui/atoms/button";
 import styles from "./form.module.scss";
 
 interface FormProps {

@@ -1,13 +1,12 @@
 import Button from "@/ui/atoms/button";
 import Form from "../form/form";
-import styles from "./vacancies-form.module.scss"
 import InputLabel from "@/ui/molecules/input-label/input-label";
 import TextareaLabel from "@/ui/molecules/textarea-label/textarea-label";
 import SelectLabel from "@/ui/molecules/select-label/select-label";
+import styles from "./vacancies-form.module.scss"
 
 interface VacanciesFormProps {
     color: "vacancies" | "companies";
-    onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 };
 
 const inputLabel = [
@@ -35,9 +34,16 @@ const selectLabel = [
     }
 ];
 
-const VacanciesForm: React.FC<VacanciesFormProps> = ({ color, onSubmit }) => {
+const VacanciesForm: React.FC<VacanciesFormProps> = ({ color }) => {
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        
+        event.preventDefault();
+        console.log("funcionando");
+    };
+
     return (
-        <Form onSubmit={onSubmit}>
+        <Form onSubmit={handleSubmit}>
 
             {inputLabel.map((element, index) => (
                 <InputLabel key={index} labelProps={element.labelProps} inputProps={element.inputProps} color="vacancies"></InputLabel>

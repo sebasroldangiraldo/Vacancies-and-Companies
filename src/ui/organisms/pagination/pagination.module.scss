@@ -25,5 +25,12 @@
             background-color: $text-light-gray;
             color: $background-gray-navigation-buttons;
         }
+
+        &:disabled {
+            background-color: $background-gray-navigation-buttons;
+            color: $text-light-gray; 
+            opacity: 0.5; 
+            pointer-events: none; 
+        }
     }
 }
