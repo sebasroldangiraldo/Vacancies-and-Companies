@@ -8,8 +8,23 @@ import Modal from "@/ui/organisms/modal/modal";
 import VacanciesForm from "@/ui/organisms/vacancies-form/vacancies-form";
 import Pagination from "@/ui/organisms/pagination/pagination";
 import styles from "./vacancies.module.scss";
+import { IVacancyResponse } from "@/models/vacancies-model";
+import { VacanciesService } from "@/services/vacancies-service";
+import { useRouter } from "next/navigation";
 
-const Vacancies: React.FC = () => {
+interface VacanciesProps {
+    data: IVacancyResponse;
+    options: {
+        label: string;
+        value: string;
+    }[]
+};
+
+const Vacancies: React.FC<VacanciesProps> = ({ data, options }) => {
+
+    const useVacanciesService = new VacanciesService();
+
+    const router = useRouter();
 
     const [modal, setModal] = useState<boolean>(false);
 
@@ -18,42 +33,42 @@ const Vacancies: React.FC = () => {
     }
 
     const handleEdit = () => {
+        setModal(!modal);
         console.log("actualizar");
     };
 
-    const handleDelete = () => {
-        console.log("eliminar");
+    const handleDelete = async ( id : number ) => {
+        
+        const confirmation = confirm("¿deseas eliminar esta vacante?");
+
+        if (!confirmation) return;
+
+        try {
+            await useVacanciesService.destroy(id);
+            router.refresh();
+            console.log("vacante eliminada existosamente");
+
+        } catch (error) {
+            console.log(error, "ocurrió un error al eliminar la vacante");
+        }
     };
     
     return (
         <div>
             <Header title="Vacantes" name="Agregar Vacante" icon="add" color="vacancies" onClick={toggleModal}></Header>
             <Modal title="Agregar Vacante" open={modal} onClose={toggleModal}>
-                <VacanciesForm color="vacancies"></VacanciesForm>
+                <VacanciesForm options={options} color="vacancies"></VacanciesForm>
             </Modal>
             <div className={styles.container}>
-                <Card title="Desarrollador Front-end" onEdit={handleEdit} onDelete={handleDelete} color="vacancies">
-                    <Text>Descripción</Text>
-                    <Text>Estado: OPEN</Text>
-                    <Text>Compañía: TechCorp</Text>
-                </Card>
-                <Card title="Desarrollador Front-end" onEdit={handleEdit} onDelete={handleDelete} color="vacancies">
-                    <Text>Descripción</Text>
-                    <Text>Estado: OPEN</Text>
-                    <Text>Compañía: TechCorp</Text>
-                </Card>
-                <Card title="Desarrollador Front-end" onEdit={handleEdit} onDelete={handleDelete} color="vacancies">
-                    <Text>Descripción</Text>
-                    <Text>Estado: OPEN</Text>
-                    <Text>Compañía: TechCorp</Text>
-                </Card>
-                <Card title="Desarrollador Front-end" onEdit={handleEdit} onDelete={handleDelete} color="vacancies">
-                    <Text>Descripción</Text>
-                    <Text>Estado: OPEN</Text>
-                    <Text>Compañía: TechCorp</Text>
-                </Card>
+                {data.content.map((vacancy, index) => (
+                    <Card key={index} title={vacancy.title} color="vacancies" onEdit={handleEdit} onDelete={() => handleDelete(vacancy.id)}>
+                        <Text>{vacancy.description}</Text>
+                        <Text>Estado: {vacancy.status}</Text>
+                        <Text>Compañía: {vacancy.company.name}</Text>
+                    </Card>
+                ))}
             </div>
-            {/* <Pagination></Pagination> */}
+            <Pagination data={data}></Pagination>
         </div>
 
     );

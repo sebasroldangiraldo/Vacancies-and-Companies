@@ -9,7 +9,7 @@ export class CompaniesService {
         this.httpClient = new HttpClient(); // inyección de dependencias -> el constructor le da valor al atributo que contiene la clase. 
     };
 
-    async findAll(page : number, size : number) {
+    async find(page : number, size : number) {
 
         try {
             const data = this.httpClient.get<ICompanyResponse>(`company?page=${page}&size=${size}`);
@@ -21,11 +21,23 @@ export class CompaniesService {
         }
     };
 
+    async findAll() {
+
+        try {
+            const data = this.httpClient.get<Content[]>("company/all");
+            return data;
+
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    };
+
     async create( body : INewCompany ) {
 
         try {
-            const coder = this.httpClient.post<Content, INewCompany>("company", body);
-            return coder;
+            const data = this.httpClient.post<Content, INewCompany>("company", body);
+            return data;
 
         } catch (error) {
             console.log(error);
@@ -45,15 +57,15 @@ export class CompaniesService {
     //     }
     // };
 
-    // async destroy( id : string ) {
+    async destroy( id : string ) {
 
-    //     try {
-    //         const coder = this.httpClient.delete<ICoder>(`coders/${id}`);
-    //         return coder;
+        try {
+            const data = this.httpClient.delete(`company/${id}`);
+            return data;
 
-    //     } catch (error) {
-    //         console.log(error);
-    //         throw error;
-    //     }
-    // };
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    };
 }

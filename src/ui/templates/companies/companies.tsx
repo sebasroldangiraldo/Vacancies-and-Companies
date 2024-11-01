@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { ICompanyResponse } from "@/models/companies-model";
+import { CompaniesService } from "@/services/companies-service";
 import Text from "@/ui/atoms/text";
 import Card from "@/ui/molecules/card/card";
 import Header from "@/ui/molecules/header/header";
@@ -11,10 +13,14 @@ import Pagination from "@/ui/organisms/pagination/pagination";
 import styles from "./companies.module.scss";
 
 interface CompaniesProps {
-    data : ICompanyResponse;
+    data: ICompanyResponse;
 };
 
-const Companies : React.FC<CompaniesProps> = ({ data }) => {
+const Companies: React.FC<CompaniesProps> = ({ data }) => {
+
+    const useCompaniesService = new CompaniesService();
+
+    const router = useRouter();
 
     const [modal, setModal] = useState<boolean>(false);
 
@@ -23,11 +29,24 @@ const Companies : React.FC<CompaniesProps> = ({ data }) => {
     };
 
     const handleEdit = () => {
+        setModal(!modal);
         console.log("actualizar");
     };
 
-    const handleDelete = () => {
-        console.log("eliminar");
+    const handleDelete = async (id: string) => {
+
+        const confirmation = confirm("¿deseas eliminar esta compañía?");
+
+        if (!confirmation) return;
+
+        try {
+            await useCompaniesService.destroy(id);
+            router.refresh();
+            console.log("compañía eliminada existosamente");
+
+        } catch (error) {
+            console.log(error, "ocurrió un error al eliminar la compañía");
+        }
     };
 
     return (
@@ -40,12 +59,12 @@ const Companies : React.FC<CompaniesProps> = ({ data }) => {
             </Modal>
 
             <div className={styles.container}>
-              {data.content.map((company, index)=>(
-                <Card key={index} title={company.name} color="companies" onEdit={handleEdit} onDelete={handleDelete}>
-                    <Text>{company.location}</Text>
-                    <Text>{company.contact}</Text>
-                </Card>
-              ))}
+                {data.content.map((company, index) => (
+                    <Card key={index} title={company.name} color="companies" onEdit={handleEdit} onDelete={() => handleDelete(company.id)}>
+                        <Text>{company.location}</Text>
+                        <Text>Contacto: {company.contact}</Text>
+                    </Card>
+                ))}
             </div>
 
             <Pagination data={data}></Pagination>

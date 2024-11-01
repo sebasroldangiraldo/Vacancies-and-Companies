@@ -26,7 +26,7 @@ export default async function CompaniesPage({ searchParams }: CompaniesPageProps
     const page = searchParams.page ? parseInt(searchParams.page) : 1;
     const size = searchParams.size ? parseInt(searchParams.size) : 6;
 
-    const data = await useCompanyService.findAll(page, size);
+    const data = await useCompanyService.find(page, size);
     console.log(data);
 
     return (

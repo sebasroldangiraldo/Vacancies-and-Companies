@@ -1,11 +1,12 @@
 import { useSearchParams, useRouter } from "next/navigation";
 import { ICompanyResponse } from "@/models/companies-model";
+import { IVacancyResponse } from "@/models/vacancies-model";
 import { icons } from "@/ui/atoms/icons";
 import Button from "@/ui/atoms/button";
 import styles from "./pagination.module.scss";
 
 interface PaginationProps {
-    data: ICompanyResponse;
+    data: ICompanyResponse | IVacancyResponse;
 };
 
 const Pagination: React.FC<PaginationProps> = ({ data }) => {
