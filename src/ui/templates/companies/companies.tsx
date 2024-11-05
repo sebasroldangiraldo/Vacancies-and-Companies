@@ -23,14 +23,20 @@ const Companies: React.FC<CompaniesProps> = ({ data }) => {
     const router = useRouter();
 
     const [modal, setModal] = useState<boolean>(false);
+    const [cardID, setCardID] = useState<string>();
 
     const toggleModal = () => {
+
         setModal(!modal);
+
+        if (!modal) {
+            setCardID(undefined);
+        };
     };
 
-    const handleEdit = () => {
+    const handleEdit = (id : string) => {
         setModal(!modal);
-        console.log("actualizar");
+        setCardID(id);
     };
 
     const handleDelete = async (id: string) => {
@@ -54,13 +60,13 @@ const Companies: React.FC<CompaniesProps> = ({ data }) => {
 
             <Header title="Compañías" name="Agregar Compañía" icon="add" color="companies" onClick={toggleModal}></Header>
 
-            <Modal title="Agregar Compañía" open={modal} onClose={toggleModal}>
-                <CompaniesForm color="companies"></CompaniesForm>
+            <Modal title={cardID ? "Actualizar Compañía" : "Agregar Compañía"} open={modal} onClose={toggleModal}>
+                <CompaniesForm color="companies" cardID={cardID} toggleModal={toggleModal}></CompaniesForm>
             </Modal>
 
             <div className={styles.container}>
                 {data.content.map((company, index) => (
-                    <Card key={index} title={company.name} color="companies" onEdit={handleEdit} onDelete={() => handleDelete(company.id)}>
+                    <Card key={index} title={company.name} color="companies" onEdit={() => handleEdit(company.id)} onDelete={() => handleDelete(company.id)}>
                         <Text>{company.location}</Text>
                         <Text>Contacto: {company.contact}</Text>
                     </Card>

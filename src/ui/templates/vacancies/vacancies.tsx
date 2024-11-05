@@ -1,6 +1,10 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { IVacancyResponse } from "@/models/vacancies-model";
+import { VacanciesService } from "@/services/vacancies-service";
+import { Option } from "@/ui/atoms/select";
 import Text from "@/ui/atoms/text";
 import Card from "@/ui/molecules/card/card";
 import Header from "@/ui/molecules/header/header";
@@ -8,10 +12,6 @@ import Modal from "@/ui/organisms/modal/modal";
 import VacanciesForm from "@/ui/organisms/vacancies-form/vacancies-form";
 import Pagination from "@/ui/organisms/pagination/pagination";
 import styles from "./vacancies.module.scss";
-import { IVacancyResponse } from "@/models/vacancies-model";
-import { VacanciesService } from "@/services/vacancies-service";
-import { useRouter } from "next/navigation";
-import { Option } from "@/ui/atoms/select";
 
 interface VacanciesProps {
     data: IVacancyResponse;

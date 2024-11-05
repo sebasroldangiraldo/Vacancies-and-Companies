@@ -33,6 +33,18 @@ export class CompaniesService {
         }
     };
 
+    async findOne(id : string) {
+
+        try {
+            const data = this.httpClient.get<Content>(`company/${id}`);
+            return data;
+
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    };
+
     async create( body : INewCompany ) {
 
         try {
@@ -45,17 +57,17 @@ export class CompaniesService {
         }
     };
 
-    // async update( id : string, body : INewCoder ) {
+    async update( id : string, body : INewCompany ) {
 
-    //     try {
-    //         const coder = this.httpClient.update<ICoder, INewCoder>(`coders/${id}`, body);
-    //         return coder;
+        try {
+            const data = this.httpClient.update<Content, INewCompany>(`company/${id}`, body);
+            return data;
 
-    //     } catch (error) {
-    //         console.log(error);
-    //         throw error;
-    //     }
-    // };
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    };
 
     async destroy( id : string ) {
 

@@ -131,7 +131,7 @@ const VacanciesForm: React.FC<VacanciesFormProps> = ({ color, options, cardID, t
                 <SelectLabel key={index} labelProps={element.labelProps} selectProps={element.selectProps} color="vacancies"></SelectLabel>
             ))}
 
-            <Button type="submit" className={`${styles.button} ${styles[color]}`}>{cardID ? "Actualizar" : "Agregar"} </Button>
+            <Button type="submit" className={`${styles.button} ${styles[color]}`}>{cardID ? "Actualizar" : "Agregar"}</Button>
         </Form>
     );
 };

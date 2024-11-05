@@ -48,8 +48,8 @@ export class VacanciesService {
     async update( id : number, body : INewVacancy ) {
 
         try {
-            const coder = this.httpClient.update<Content, INewVacancy>(`vacants/${id}`, body);
-            return coder;
+            const data = this.httpClient.update<Content, INewVacancy>(`vacants/${id}`, body);
+            return data;
 
         } catch (error) {
             console.log(error);
