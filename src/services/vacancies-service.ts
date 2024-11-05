@@ -21,6 +21,18 @@ export class VacanciesService {
         }
     };
 
+    async findOne(id : number) {
+
+        try {
+            const data = this.httpClient.get<Content>(`vacants/${id}`);
+            return data;
+
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    };
+
     async create( body : INewVacancy ) {
 
         try {
@@ -33,17 +45,17 @@ export class VacanciesService {
         }
     };
 
-    // async update( id : string, body : INewCoder ) {
+    async update( id : number, body : INewVacancy ) {
 
-    //     try {
-    //         const coder = this.httpClient.update<ICoder, INewCoder>(`coders/${id}`, body);
-    //         return coder;
+        try {
+            const coder = this.httpClient.update<Content, INewVacancy>(`vacants/${id}`, body);
+            return coder;
 
-    //     } catch (error) {
-    //         console.log(error);
-    //         throw error;
-    //     }
-    // };
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    };
 
     async destroy( id : number ) {
 

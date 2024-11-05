@@ -1,20 +1,20 @@
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { INewVacancy } from "@/models/vacancies-model";
+import { VacanciesService } from "@/services/vacancies-service";
+import { Option } from "@/ui/atoms/select";
 import Button from "@/ui/atoms/button";
 import Form from "../form/form";
 import InputLabel from "@/ui/molecules/input-label/input-label";
 import TextareaLabel from "@/ui/molecules/textarea-label/textarea-label";
 import SelectLabel from "@/ui/molecules/select-label/select-label";
 import styles from "./vacancies-form.module.scss";
-import { INewVacancy } from "@/models/vacancies-model";
-import { useState } from "react";
-import { VacanciesService } from "@/services/vacancies-service";
-import { useRouter } from "next/navigation";
 
 interface VacanciesFormProps {
     color: "vacancies" | "companies";
-    options: {
-        label: string;
-        value: string;
-    }[];
+    options: Option[];
+    cardID?: number;
+    toggleModal: () => void; 
 };
 
 const baseVacancy: INewVacancy = {
@@ -24,13 +24,33 @@ const baseVacancy: INewVacancy = {
     companyId: ""
 };
 
-const VacanciesForm: React.FC<VacanciesFormProps> = ({ color, options }) => {
+const VacanciesForm: React.FC<VacanciesFormProps> = ({ color, options, cardID, toggleModal }) => {
 
-    const useCompaniesService = new VacanciesService();
+    const useVacanciesService = new VacanciesService();
 
     const router = useRouter();
 
     const [vacancy, setVacancy] = useState<INewVacancy>(baseVacancy);
+
+    useEffect(() => {
+
+        if (cardID) {
+
+            try {
+                const fetchVacancy = async () => {
+
+                    const data = await useVacanciesService.findOne(cardID);
+                    setVacancy({ title: data.title, description: data.description, status: data.status, companyId: data.company.id });
+                };
+
+                fetchVacancy();
+
+            } catch (error) {
+                console.log("error al encontrar la vacante", error);
+            }
+        };
+
+    }, [cardID]);
 
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement>) => {
 
@@ -67,15 +87,33 @@ const VacanciesForm: React.FC<VacanciesFormProps> = ({ color, options }) => {
 
         event.preventDefault();
 
+        if (!vacancy.title || !vacancy.description || !vacancy.status || !vacancy.companyId) {
+
+            alert("por favor, completa todos los campos");
+            return;
+        };
+    
         try {
-            await useCompaniesService.create(vacancy);
+
+            if (cardID) {
+
+                await useVacanciesService.update(cardID, vacancy);
+                console.log("vacante actualizada exitosamente");
+                
+            } else {
+              
+                await useVacanciesService.create(vacancy);
+                console.log("vacante creada exitosamente");
+            };
+
             setVacancy(baseVacancy);
             router.refresh();
-            console.log("vacante creada exitosamente", vacancy);
-
+            toggleModal();
+            
         } catch (error) {
-            console.log(error, "error");
-        }
+
+            console.log(error, "ocurrió un error al realizar la petición");
+        };
     };
 
     return (
@@ -93,7 +131,7 @@ const VacanciesForm: React.FC<VacanciesFormProps> = ({ color, options }) => {
                 <SelectLabel key={index} labelProps={element.labelProps} selectProps={element.selectProps} color="vacancies"></SelectLabel>
             ))}
 
-            <Button type="submit" className={`${styles.button} ${styles[color]}`}>Agregar</Button>
+            <Button type="submit" className={`${styles.button} ${styles[color]}`}>{cardID ? "Actualizar" : "Agregar"} </Button>
         </Form>
     );
 };

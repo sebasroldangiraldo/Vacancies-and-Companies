@@ -11,13 +11,11 @@ import styles from "./vacancies.module.scss";
 import { IVacancyResponse } from "@/models/vacancies-model";
 import { VacanciesService } from "@/services/vacancies-service";
 import { useRouter } from "next/navigation";
+import { Option } from "@/ui/atoms/select";
 
 interface VacanciesProps {
     data: IVacancyResponse;
-    options: {
-        label: string;
-        value: string;
-    }[]
+    options: Option[];
 };
 
 const Vacancies: React.FC<VacanciesProps> = ({ data, options }) => {
@@ -27,18 +25,24 @@ const Vacancies: React.FC<VacanciesProps> = ({ data, options }) => {
     const router = useRouter();
 
     const [modal, setModal] = useState<boolean>(false);
+    const [cardID, setCardID] = useState<number>();
 
     const toggleModal = () => {
-        setModal(!modal);
-    }
 
-    const handleEdit = () => {
         setModal(!modal);
-        console.log("actualizar");
+
+        if (!modal) {
+            setCardID(undefined);
+        };
     };
 
-    const handleDelete = async ( id : number ) => {
-        
+    const handleEdit = (id: number) => {
+        setModal(!modal);
+        setCardID(id);
+    };
+
+    const handleDelete = async (id: number) => {
+
         const confirmation = confirm("¿deseas eliminar esta vacante?");
 
         if (!confirmation) return;
@@ -52,22 +56,25 @@ const Vacancies: React.FC<VacanciesProps> = ({ data, options }) => {
             console.log(error, "ocurrió un error al eliminar la vacante");
         }
     };
-    
+
     return (
         <div>
             <Header title="Vacantes" name="Agregar Vacante" icon="add" color="vacancies" onClick={toggleModal}></Header>
-            <Modal title="Agregar Vacante" open={modal} onClose={toggleModal}>
-                <VacanciesForm options={options} color="vacancies"></VacanciesForm>
+
+            <Modal title={cardID ? "Actualizar Vacante" : "Agregar Vacante"} open={modal} onClose={toggleModal}>
+                <VacanciesForm options={options} color="vacancies" cardID={cardID} toggleModal={toggleModal} ></VacanciesForm>
             </Modal>
+
             <div className={styles.container}>
                 {data.content.map((vacancy, index) => (
-                    <Card key={index} title={vacancy.title} color="vacancies" onEdit={handleEdit} onDelete={() => handleDelete(vacancy.id)}>
+                    <Card key={index} title={vacancy.title} color="vacancies" onEdit={() => handleEdit(vacancy.id)} onDelete={() => handleDelete(vacancy.id)}>
                         <Text>{vacancy.description}</Text>
                         <Text>Estado: {vacancy.status}</Text>
                         <Text>Compañía: {vacancy.company.name}</Text>
                     </Card>
                 ))}
             </div>
+
             <Pagination data={data}></Pagination>
         </div>
 
